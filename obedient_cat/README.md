@@ -22,7 +22,7 @@ In an attempt to overcomplicate this, we will be building an command-line-argume
 First and for most, we need to import all the modules we will be using.
 ```rust
 use std::fs;
-use std::path::{Pathbuf};
+use std::path::{PathBuf};
 use std::env::{args, Args};
 ```
 
