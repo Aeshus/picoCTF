@@ -139,7 +139,7 @@ Rust has a very powerful testing system, so I want to use this here.
 While we don't *really* need to use tests, as all we're testing is that Rust's internal standard library is working, but that's just the nature of this very simple CTF challenge.
 Now you just need to run `$ cargo run (file)` and you have the flag!
 
-## References
+## References:
 [0] - https://stackoverflow.com/a/48215530 <br>
 [1] - https://www.gnu.org/software/wget/ <br>
 [2] - https://en.wikipedia.org/wiki/Man_page  <br>
