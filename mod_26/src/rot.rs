@@ -1,7 +1,24 @@
-pub fn rotate(input: String, shift: usize) -> String {
+pub fn rotate<T>(input: String, shift: T) -> String
+where
+    T: TryInto<u8>
+        + Eq
+        + core::ops::Rem<Output = T>
+        + core::ops::Add<Output = T>
+        + TryFrom<i32>
+        + core::fmt::Debug
+        + std::cmp::Ord
+        + core::cmp::PartialEq,
+    <T as TryInto<u8>>::Error: core::fmt::Debug,
+{
     let mut output = String::new();
 
-    let sanitized_shift: u8 = (shift % 26).try_into().unwrap();
+    let mut sanitized: T = shift % T::try_from(26).ok().unwrap();
+
+    if sanitized < T::try_from(0).ok().unwrap() {
+        sanitized = sanitized + T::try_from(26).ok().unwrap()
+    }
+
+    let sanitized: u8 = sanitized.try_into().unwrap();
 
     for character in input.chars() {
         let case = match character {
@@ -13,18 +30,10 @@ pub fn rotate(input: String, shift: usize) -> String {
             }
         };
 
-        let output_char = (case + (character as u8 - case + sanitized_shift) % 26) as char;
+        let output_char = (case + (character as u8 - case + sanitized) % 26) as char;
 
         output.push(output_char);
     }
 
     output
-}
-
-pub fn decode(input: String, shift: usize) -> String {
-    rotate(input, 26 - (shift % 26))
-}
-
-pub fn encode(input: String, shift: usize) -> String {
-    rotate(input, shift)
 }
