@@ -1,7 +1,6 @@
 pub fn rotate<T>(input: String, shift: T) -> String
 where
     T: TryInto<u8>
-        + Eq
         + core::ops::Rem<Output = T>
         + core::ops::Add<Output = T>
         + TryFrom<i32>
