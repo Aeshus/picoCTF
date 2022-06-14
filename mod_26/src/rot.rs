@@ -6,8 +6,7 @@ where
         + core::ops::Add<Output = T>
         + TryFrom<i32>
         + core::fmt::Debug
-        + std::cmp::Ord
-        + core::cmp::PartialEq,
+        + std::cmp::Ord,
     <T as TryInto<u8>>::Error: core::fmt::Debug,
 {
     let mut output = String::new();
