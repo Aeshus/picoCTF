@@ -1,20 +1,22 @@
-pub fn rotate<T>(input: String, shift: T) -> String
+pub fn rotate<Int, S>(input: S, shift: Int) -> String
 where
-    T: TryInto<u8>
+    Int: TryInto<u8>
         + core::cmp::Eq
-        + core::ops::Rem<Output = T>
-        + core::ops::Add<Output = T>
+        + core::ops::Rem<Output = Int>
+        + core::ops::Add<Output = Int>
         + TryFrom<i32>
-        + core::fmt::Debug
         + core::cmp::Ord,
-    <T as TryInto<u8>>::Error: core::fmt::Debug,
+    <Int as TryInto<u8>>::Error: core::fmt::Debug,
+    S: Into<String>,
 {
+    let input: String = input.into();
+
     let mut output = String::new();
 
-    let mut sanitized: T = shift % T::try_from(26).ok().unwrap();
+    let mut sanitized: Int = shift % Int::try_from(26).ok().unwrap();
 
-    if sanitized < T::try_from(0).ok().unwrap() {
-        sanitized = sanitized + T::try_from(26).ok().unwrap()
+    if sanitized < Int::try_from(0).ok().unwrap() {
+        sanitized = sanitized + Int::try_from(26).ok().unwrap()
     }
 
     let sanitized: u8 = sanitized.try_into().unwrap();
