@@ -7,10 +7,8 @@ where
         + TryFrom<i32>
         + core::cmp::Ord,
     <Int as TryInto<u8>>::Error: core::fmt::Debug,
-    S: Into<String>,
+    S: AsRef<str>,
 {
-    let input: String = input.into();
-
     let mut output = String::new();
 
     let mut sanitized: Int = shift % Int::try_from(26).ok().unwrap();
@@ -21,7 +19,7 @@ where
 
     let sanitized: u8 = sanitized.try_into().unwrap();
 
-    for character in input.chars() {
+    for character in input.as_ref().chars() {
         let case = match character {
             'A'..='Z' => b'A',
             'a'..='z' => b'a',
