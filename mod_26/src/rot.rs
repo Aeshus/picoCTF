@@ -9,30 +9,21 @@ where
     <Int as TryInto<u8>>::Error: core::fmt::Debug,
     S: AsRef<str>,
 {
-    let mut output = String::new();
-
-    let mut sanitized: Int = shift % Int::try_from(26).ok().unwrap();
-
-    if sanitized < Int::try_from(0).ok().unwrap() {
-        sanitized = sanitized + Int::try_from(26).ok().unwrap()
+    let sanitized: u8 = if shift < Int::try_from(0).ok().unwrap() {
+        shift % Int::try_from(26).ok().unwrap() + Int::try_from(26).ok().unwrap()
+    } else {
+        shift % Int::try_from(26).ok().unwrap()
     }
+    .try_into()
+    .unwrap();
 
-    let sanitized: u8 = sanitized.try_into().unwrap();
-
-    for character in input.as_ref().chars() {
-        let case = match character {
-            'A'..='Z' => b'A',
-            'a'..='z' => b'a',
-            _ => {
-                output.push(character);
-                continue;
-            }
-        };
-
-        let output_char = (case + (character as u8 - case + sanitized) % 26) as char;
-
-        output.push(output_char);
-    }
-
-    output
+    input
+        .as_ref()
+        .chars()
+        .map(|character| match character {
+            'A'..='Z' => (b'A' + (character as u8 - b'A' + sanitized) % 26) as char,
+            'a'..='z' => (b'a' + (character as u8 - b'a' + sanitized) % 26) as char,
+            _ => character,
+        })
+        .collect()
 }
