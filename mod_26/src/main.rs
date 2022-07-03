@@ -85,4 +85,15 @@ mod tests {
             rotate(rotate(input.clone(), 12), -2)
         );
     }
+
+    #[test]
+    fn longer_rot() {
+        let input = "AJklfjaskJskKLAJKLJlJ;KDIUgFFSFTGvdHJGFGSFghFHGVhVGFHFGHJVcdfaghjfsudhbdkjfslkhkjshdfkjsnlkfjH";
+        for num in 0..1000 {
+            assert_eq!(
+                rotate(input.clone(), num + 13),
+                rotate(input.clone(), num - 13)
+            );
+        }
+    }
 }

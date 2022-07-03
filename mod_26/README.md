@@ -1,23 +1,13 @@
-# PicoCTF - Mod 26
+# Exploring Rust Generics
 
-## Problem:
-- Cryptography can be easy, do you know what ROT13 is? 
-- `cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE}`
+Generics are the way 
 
-## Hints:
-1. `This can be solved online if you don't want to do it by hand!`
-  - Can true, but that ruins the fun! 
+## Mod 26, A PicoCTF:tm: Challenge
 
-## Theory / Plan:
-ROT13, as wikipedia describes, is a very simple cipher where the characters are shifted to the by 13 places. [[0]](https://en.wikipedia.org/wiki/ROT13)
+(explains problem)
 
-## Solution:
-For this problem, I plan to make a library & binary project, in one.
+## Why would you want to use generics?
 
-The main difference is that a library uses lib.rs while a binary uses main.rs.
+## How do they work?
 
-
-
-
-## References:
-[0] - https://en.wikipedia.org/wiki/ROT13 <br>
+## How to apply them to a real problem?
