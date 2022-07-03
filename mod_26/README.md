@@ -1,5 +1,4 @@
 # Exploring Rust Generics
-
 Generics are the way 
 
 ## Mod 26, A PicoCTF:tm: Challenge
